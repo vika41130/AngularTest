@@ -1,32 +1,23 @@
-import { AfterViewInit, Directive, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentInit, AfterViewInit, ContentChild, Directive, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: '[customDirective]',
+  selector: '[customDirective], customDirective',
 })
-export class CustomDirective implements OnChanges, OnInit, AfterViewInit {
+export class CustomDirective implements AfterContentInit, AfterViewInit {
 
-  @Input() prop1 = '';
-  @Input() test1Prop = '';
+  @ContentChild('inside') inside!: ElementRef;
 
   constructor(
     private elementRef: ElementRef
   ) {
-    console.log('constructor');
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log({changes});
-  }
-
-  ngOnInit(): void {
-      console.log('ngOnInit');
+  ngAfterContentInit(): void {
+      console.log(this.inside);
   }
 
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit');
-    const prop1 = this.elementRef.nativeElement.getAttribute('prop1');
-    console.log({prop1});
-    this.elementRef.nativeElement.setAttribute('prop2', '2');
+    this.elementRef.nativeElement.innerHTML = this.inside.nativeElement.innerHTML;
   }
 
 }
