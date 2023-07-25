@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-test1',
   templateUrl: './test1.component.html',
   styleUrls: ['./test1.component.scss']
 })
-export class Test1Component {
+export class Test1Component implements OnChanges {
 
-  prop1 = '';
+  @Input() test1Prop = '';
+
+  ngOnChanges(changes: SimpleChanges): void {
+      // console.log({changes});
+  }
 
 }
