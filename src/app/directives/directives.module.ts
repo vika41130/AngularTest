@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HostDirective } from './host/host.directive';
+import { CustomDirective } from './custom/custom.directive';
 
 
 @NgModule({
   declarations: [
-    HostDirective
+    CustomDirective
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    HostDirective
+    CustomDirective
   ]
 })
 export class DirectivesModule { }
